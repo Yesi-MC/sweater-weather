@@ -26,6 +26,7 @@ class Api::V1::ForecastController < ApplicationController
     daily_weather = weather[:daily][0..4].map { |daily| DailyWeather.new(daily) }
     hourly_weather = weather[:hourly][0..7].map { |hourly| HourlyWeather.new(hourly) }
     total_weather = TotalWeather.new(current_weather, daily_weather, hourly_weather) 
+    
     render json: ForecastSerializer.new(total_weather)
   end
 end 
