@@ -8,10 +8,18 @@ class LocationService
       parse_data(response)
     end 
 
+    def get_distance(start_location, destination)
+      response = conn.get("/directions/v2/route") do |r|
+        r.params['from'] = start_location
+        r.params['to'] = destination
+      end
+      parse_data(response)
+    end
+
     private 
 
     def conn 
-      conn = Faraday.new('http://www.mapquestapi.com') do |f|
+      Faraday.new('http://www.mapquestapi.com') do |f|
         f.params['key'] = ENV['map_api_key']
       end
     end
