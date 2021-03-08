@@ -5,6 +5,7 @@ class FoodService
       response = conn.get("/v3/businesses/search") do |r|
         r.params['term'] = food
         r.params['location'] = destination
+        r.params['open_now'] = true
       end
       parse_data(response)
     end
