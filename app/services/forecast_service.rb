@@ -11,6 +11,16 @@ class ForecastService
       parse_data(response)
     end
 
+    def current_forecast(latitude, longitude)
+      response = conn.get("/data/2.5/onecall") do |r|
+        r.params['lat'] = latitude
+        r.params['lon'] = longitude
+        r.params['exclude'] = "minutely,alerts,hourly,daily"
+        r.params['units'] = "imperial"
+      end
+      parse_data(response)
+    end
+
     private 
 
     def conn 
