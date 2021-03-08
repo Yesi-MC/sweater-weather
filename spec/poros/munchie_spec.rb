@@ -70,7 +70,7 @@ RSpec.describe Munchie do
     expect(munchie_details.destination_city).to eq(destination)
     expect(munchie_details.travel_time).to eq(distance[:route][:formattedTime])
     expect(munchie_details.forecast).to eq({ summary: weather[:current][:weather][0][:description], temperature: weather[:current][:temp].to_s })
-    expect(munchie_details.restaurant).to eq({ name: food[:businesses][0][:name], address: food[:businesses][0][:location][:display_address][0] })
+    expect(munchie_details.restaurant).to eq({ name: food[:businesses][0][:name], address: food[:businesses][0][:location][:display_address].join(", ") })
 
   end 
 end

@@ -8,6 +8,6 @@ class Munchie
     @destination_city = destination
     @travel_time = distance[:route][:formattedTime]
     @forecast = { summary: weather[:current][:weather][0][:description], temperature: weather[:current][:temp].to_s }
-    @restaurant = { name: food[:businesses][0][:name], address: food[:businesses][0][:location][:display_address][0] }
+    @restaurant = { name: food[:businesses][0][:name], address: food[:businesses][0][:location][:display_address].join(", ") }
   end
 end
