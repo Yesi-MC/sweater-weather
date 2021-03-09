@@ -29,8 +29,8 @@ describe "Background API Endpoints" do
       expect(image_data[:location]).to be_a(String)
       expect(image_data).to have_key(:image_url)
       expect(image_data[:image_url]).to be_a(String)
-      
-      credit_data = background[:data][:attributes][:credit]
+ 
+      credit_data = image_data[:credit]
       expect(credit_data).to be_a(Hash)
       expect(credit_data).to have_key(:source)
       expect(credit_data[:source]).to be_a(String)
