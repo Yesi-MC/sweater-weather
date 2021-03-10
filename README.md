@@ -34,8 +34,8 @@ This Sweater Weather project is a backend application that can be called by a fr
   To use the project in your local environment, please follow the instructions below:
 
   3. Clone the repository:<br>
-    `git clone git@github.com:Yesi-MC/sweater-weather.git `
-    `cd sweater-weather`
+    `git clone git@github.com:Yesi-MC/sweater-weather.git `<br>
+    `cd sweater-weather`<br>
   4. Install gem packages<br>
     `bundle install`
   5. Create the database<br>
