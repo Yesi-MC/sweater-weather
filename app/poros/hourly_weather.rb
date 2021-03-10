@@ -5,7 +5,6 @@ class HourlyWeather
               :icon
 
   def initialize(data)
-    # require 'pry'; binding.pry
     @time = DateTime.strptime(data[:dt].to_s, '%s')
     @temperature = data[:temp]
     @conditions = data[:weather][0][:description]
