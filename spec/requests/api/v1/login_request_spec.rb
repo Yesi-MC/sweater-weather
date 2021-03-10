@@ -38,5 +38,31 @@ RSpec.describe "User Login endpoint" do
       expect(user_attributes).to have_key(:api_key)
       expect(user_attributes[:api_key]).to be_a(String)
     end
+    it 'will return a 400 error if no query is passed' do 
+      user = User.create(email: "whatever@example.com", password: "password", api_key: "58969b40deaf1e4ba4e47df2bdca2eb69c200d3fc4cd1459ccb587" )
+      
+      query_params = {
+                      "email": "",
+                      "password": ""
+                      }
+
+      post "/api/v1/sessions", params: query_params
+      
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+    end 
+    it 'will return a 401 error if incorrect password is given' do 
+      user = User.create(email: "whatever@example.com", password: "password", api_key: "58969b40deaf1e4ba4e47df2bdca2eb69c200d3fc4cd1459ccb587" )
+      
+      query_params = {
+                      "email": "whatever@example.com",
+                      "password": "pass"
+                      }
+
+      post "/api/v1/sessions", params: query_params
+      
+      expect(response).to_not be_successful
+      expect(response.status).to eq(401)
+    end 
   end
 end
