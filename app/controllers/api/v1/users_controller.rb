@@ -1,12 +1,18 @@
 class Api::V1::UsersController < ApplicationController
 
   def create
-    if valid_password?
+    if User.find_by(email: params[:email])
+      render json: "User Already Exists", status: 409
+    else
       user = User.new(user_params)
-      user.generate_key
-      user.save
-      render json: UsersSerializer.new(user), status: 201
-    end
+      if user.email != "" && valid_password?
+        user.generate_key
+        user.save
+        render json: UsersSerializer.new(user), status: 201
+      else 
+        render json: "Invalid User Params", status: 400
+      end
+    end 
   end
 
   private

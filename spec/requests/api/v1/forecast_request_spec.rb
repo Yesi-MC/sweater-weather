@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Weather API Endpoints" do
+describe "Forecast API Endpoints" do
   describe "can get weather based on location" do
     it "obtains weather info" do 
   
@@ -10,6 +10,7 @@ describe "Weather API Endpoints" do
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
+      expect(response.content_type).to eq("application/json")
 
       forecast = JSON.parse(response.body, symbolize_names: true) 
         
@@ -79,13 +80,13 @@ describe "Weather API Endpoints" do
         expect(weather[:icon]).to be_a(String)
       end 
     end 
-    # it 'returns a 400 error if no query is passed in' do 
-    #   query_params = {
-    #       location: ''
-    #       }
-    #   get "/api/v1/forecast", params: query_params
-    #   expect(response).to_not be_successful
-    #   expect(response.status).to eq(400)
-    # end 
+    it 'will return a 400 error if no query is passed' do 
+      query_params = {location: ''}
+
+      get "/api/v1/forecast", params: query_params
+      
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+    end 
   end
 end 

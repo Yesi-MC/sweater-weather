@@ -38,5 +38,45 @@ RSpec.describe "Registration endpoint" do
       expect(user_attributes).to have_key(:api_key)
       expect(user_attributes[:api_key]).to be_a(String)
     end
+    it 'will return a 400 error if no query is passed' do 
+      
+      query_params = {
+                    "email": "",
+                    "password": "",
+                    "password_confirmation": ""
+                      }
+
+      post "/api/v1/users", params: query_params
+      
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+    end 
+    it 'will return a 400 error if incorrect password is given' do 
+      
+      query_params = {
+                    "email": "whatever@example.com",
+                    "password": "password",
+                    "password_confirmation": "passwo"
+                      }
+
+      post "/api/v1/users", params: query_params
+      
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+    end 
+    it "will return a 409 'conflict' error if user already exists" do 
+      user = User.create(email: "whatever@example.com", password: "password", api_key: "58969b40deaf1e4ba4e47df2bdca2eb69c200d3fc4cd1459ccb587" )
+
+      query_params = {
+                    "email": "whatever@example.com",
+                    "password": "password",
+                    "password_confirmation": "password"
+                      }
+
+      post "/api/v1/users", params: query_params
+      
+      expect(response).to_not be_successful
+      expect(response.status).to eq(409)
+    end 
   end
 end

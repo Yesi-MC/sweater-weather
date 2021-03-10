@@ -10,6 +10,7 @@ describe "Background API Endpoints" do
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
+      expect(response.content_type).to eq("application/json")
 
       background = JSON.parse(response.body, symbolize_names: true) 
         
@@ -38,6 +39,14 @@ describe "Background API Endpoints" do
       expect(credit_data[:author]).to be_a(String)
       expect(credit_data).to have_key(:logo)
       expect(credit_data[:logo]).to be_a(String)
+    end 
+    it 'will return a 400 error if no query is passed' do 
+      query_params = {location: ''}
+
+      get "/api/v1/background", params: query_params
+      
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
     end 
   end
 end 
