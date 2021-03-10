@@ -15,5 +15,15 @@ RSpec.describe LocationService do
       expect(geo_data).to have_key(:lng)
       expect(geo_data[:lng]).to be_a(Numeric)
     end
+    it 'sends a request for trip distance' do
+      data = LocationService.get_travel_time("Denver,CO", "Estes Park,CO")
+
+      expect(data).to be_a(Hash) 
+      travel_time_data = data[:route] 
+
+      expect(travel_time_data).to have_key(:formattedTime)
+      expect(travel_time_data[:formattedTime]).to be_a(String)
+    end
+
   end
 end
