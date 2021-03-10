@@ -43,8 +43,6 @@ RSpec.describe "roadtrip endpoint" do
       expect(trip_attributes).to have_key(:travel_time)
       expect(trip_attributes[:travel_time]).to be_a(String)
 
-      
-
       weather_eta = trip_data[:data][:attributes][:weather_at_eta]               
       expect(weather_eta).to be_a(Hash)
       expect(weather_eta).to have_key(:temperature)
@@ -53,5 +51,33 @@ RSpec.describe "roadtrip endpoint" do
       expect(weather_eta).to have_key(:conditions)
       expect(weather_eta[:conditions]).to be_a(String)
     end
+    it 'will return a 400 error if no query is passed' do 
+      user = User.create(email: "whatever@example.com", password: "password", api_key: "jgn983hy48thw9begh98h4539h4")
+      
+      query_params = {
+                      "origin": "",
+                      "destination": "Estes Park,CO",
+                      "api_key": "jgn983hy48thw9begh98h4539h4"
+                      }
+
+      post "/api/v1/road_trip", params: query_params
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+    end 
+    it 'will return a 401 error if no query is passed' do 
+      user = User.create(email: "whatever@example.com", password: "password", api_key: "jgn983hy48thw9begh98h4539h4")
+      
+      query_params = {
+                      "origin": "Denver,CO",
+                      "destination": "Estes Park,CO",
+                      "api_key": "jgn983hy48thw9"
+                      }
+
+      post "/api/v1/road_trip", params: query_params
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(401)
+    end 
   end
 end
