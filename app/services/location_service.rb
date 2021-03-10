@@ -8,6 +8,14 @@ class LocationService
       parse_data(response)
     end 
 
+    def get_travel_time(start_location, end_location)
+      response = conn.get("/directions/v2/route") do |r|
+        r.params['from'] = start_location
+        r.params['to'] = end_location
+      end
+        parse_data(response)
+    end
+
     private 
 
     def conn 
