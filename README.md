@@ -1,4 +1,5 @@
 ![](https://img.shields.io/badge/Rails-5.2.4-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/Ruby-2.5.3-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
 
 # Sweater Weather
 
@@ -16,7 +17,7 @@
 Sweater Weather is an app that allows users to create a road trip and allows users to see the current weather and forecasted weather for their destination. 
 
 ## Database Schema
-
+![sweater-weather-user](https://user-images.githubusercontent.com/69552154/110570568-54ae4180-8113-11eb-947b-128000ba0039.png)
 
 ## Technologies Used
 - Ruby 2.5.3
@@ -54,6 +55,7 @@ Sweater Weather is an app that allows users to create a road trip and allows use
     `open coverage/index.html`
 
 ## Learning Goals
+- Expose and API that requires an authentication token 
 
 
 ## Author
