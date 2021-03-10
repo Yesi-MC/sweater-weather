@@ -23,6 +23,8 @@ describe "Forecast API Endpoints" do
       expect(forecast[:data][:type]).to eq('forecast')
       expect(forecast[:data]).to have_key(:attributes)
       expect(forecast[:data][:attributes]).to be_a(Hash)
+      expect(forecast[:data][:attributes]).to_not have_key(:minutely)
+      expect(forecast[:data][:attributes]).to_not have_key(:alerts)
 
       current_weather = forecast[:data][:attributes][:current_weather]
       expect(current_weather).to have_key(:datetime)
