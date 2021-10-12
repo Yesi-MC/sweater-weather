@@ -2,12 +2,12 @@ class RoadtripFacade
   class << self
 
     def get_roadtrip_data(start_location, end_location)
-      coordinates = LocationService.location(end_location)
-      distance = LocationService.get_travel_time(start_location, end_location)
+      distance = LocationFacade.travel_time(start_location, end_location)
+      location = LocationFacade.location(end_location)
 
-      latitude = coordinates[:results][0][:locations][0][:latLng][:lat]
-      longitude = coordinates[:results][0][:locations][0][:latLng][:lng]
-
+      latitude = location.lat
+      longitude = location.long
+  
       weathers = ForecastService.forecast(latitude, longitude)
       trip_travel_time = distance[:route][:formattedTime]
       trip_time = get_time_block(trip_travel_time)
