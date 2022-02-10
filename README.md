@@ -54,12 +54,13 @@ This Sweater Weather project is a backend application that can be called by a fr
     `bundle exec rspec`  
     `open coverage/index.html`
   
+  
 ## Example API Endpoints
 #### Forecast Endpoint 
 `get http://localhost:3000/api/v1/forecast?location=Portland,Or`
 
 response: 
-```
+```JSON
 {
     "data": {
         "id": null,
@@ -107,7 +108,7 @@ response:
 `get http://localhost:3000/api/v1/background?location=Portland,Or`
 
 response: 
-```
+```JSON
 {
     "data": {
         "id": null,
@@ -132,7 +133,7 @@ response:
 `post http://localhost:3000/api/v1/users`
 
 body example: 
-```
+```JSON
 {
   "email": "person@example.com",
   "password": "password",
@@ -141,7 +142,7 @@ body example:
 ```
 
 response:
-```
+```JSON
 {
     "data": {
         "id": "3",
@@ -157,15 +158,15 @@ response:
 `post http://localhost:3000/api/v1/sessions`
 
 body example: 
-```
+```JSON
 {
   "email": "person@example.com",
   "password": "password"
 }
-```
+```JSON
 
 response:
-```
+```JSON
 {
     "data": {
         "id": "1",
@@ -183,7 +184,7 @@ response:
 `post http://localhost:3000/api/v1/road_trip`
 
 body example: 
-```
+```JSON
 {
 "origin": "Denver,CO",
 "destination": "Estes Park,CO",
@@ -192,7 +193,7 @@ body example:
 ```
 
 response:
-```
+```JSON
 {
     "data": {
         "id": null,
