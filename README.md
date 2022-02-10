@@ -167,7 +167,7 @@ body example:
   "email": "person@example.com",
   "password": "password"
 }
-```JSON
+```
 
 response:
 ```JSON
