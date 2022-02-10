@@ -46,6 +46,10 @@ This Sweater Weather project is a backend application that can be called by a fr
     `weather_api_key: <your key>`<br>
     `map_api_key: <your key>`<br>
     `unsplash_api_key: <your key>`<br>
+      * [Obtain your weather api key through: Open Weather Map](https://openweathermap.org/api#current)
+      * [Obtain your map api key through: MapQuest's Geocoding API](https://developer.mapquest.com/documentation/geocoding-api/)
+      * [Obtain your Unsplash api key through: Unsplash](https://unsplash.com/documentation)
+
   4. To launch a local server:<br>
     `rails s`<br>
     Once the server is running you can get or post calls in postman to `localhost:3000`<br>
